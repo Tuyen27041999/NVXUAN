@@ -1,0 +1,1647 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+Attributes/CommandAttributes.cs
+bin/Debug/net6.0/TerminalRunner.deps.json
+bin/Debug/net6.0/TerminalRunner.runtimeconfig.json
+Data/student.json
+Interfaces/ISubCommand.cs
+Models/CommandConfig.cs
+Models/Student.cs
+obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+obj/Debug/net6.0/TerminalRunner.AssemblyInfo.cs
+obj/Debug/net6.0/TerminalRunner.AssemblyInfoInputs.cache
+obj/Debug/net6.0/TerminalRunner.csproj.CoreCompileInputs.cache
+obj/Debug/net6.0/TerminalRunner.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/TerminalRunner.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/net6.0/TerminalRunner.genruntimeconfig.cache
+obj/Debug/net6.0/TerminalRunner.GlobalUsings.g.cs
+obj/memory-bank/activeContext.md
+obj/memory-bank/productContext.md
+obj/memory-bank/progress.md
+obj/memory-bank/projectbrief.md
+obj/memory-bank/systemPatterns.md
+obj/memory-bank/techContext.md
+obj/project.assets.json
+obj/project.nuget.cache
+obj/TerminalRunner.csproj.nuget.dgspec.json
+obj/TerminalRunner.csproj.nuget.g.props
+obj/TerminalRunner.csproj.nuget.g.targets
+Program.cs
+Services/CommonFunction.cs
+StartPoint.cs
+SubCommands/ReadJson.cs
+TerminalRunner.csproj
+TerminalRunner.sln
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="Attributes/CommandAttributes.cs">
+namespace TerminalRunner.Attributes
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    public class CommandAttribute : Attribute
+    {
+        public string Key { get; set; }
+        public string Description { get; set; }
+        public string[] Aliases { get; set; }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class CommandArgumentAttribute : Attribute
+    {
+        public int Order { get; set; }
+        public bool IsRequired { get; set; }
+        public string Description { get; set; }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class CommandOptionAttribute : Attribute
+    {
+        public string[] Aliases { get; set; }
+        public string Description { get; set; }
+    }
+}
+</file>
+
+<file path="bin/Debug/net6.0/TerminalRunner.deps.json">
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "TerminalRunner/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "TerminalRunner.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.3": {
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.3.27908"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TerminalRunner/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Newtonsoft.Json/13.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
+    }
+  }
+}
+</file>
+
+<file path="bin/Debug/net6.0/TerminalRunner.runtimeconfig.json">
+{
+  "runtimeOptions": {
+    "tfm": "net6.0",
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "6.0.0"
+    }
+  }
+}
+</file>
+
+<file path="Data/student.json">
+[
+    {
+        "Name": "Nguyen Van A",
+        "Age": 20,
+        "Gender": "Nam",
+        "Address": "123 đường Lê Lợi, Quận 1, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Tran Thi B", 
+        "Age": 21,
+        "Gender": "Nữ",
+        "Address": "456 đường Nguyễn Huệ, Quận 3, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Le Van C",
+        "Age": 19,
+        "Gender": "Nam", 
+        "Address": "789 đường Võ Văn Tần, Quận 10, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Pham Thi D",
+        "Age": 22,
+        "Gender": "Nữ",
+        "Address": "321 đường Lý Tự Trọng, Quận 1, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Hoang Van E",
+        "Age": 20,
+        "Gender": "Nam",
+        "Address": "654 đường Trần Hưng Đạo, Quận 5, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Vu Thi F",
+        "Age": 21,
+        "Gender": "Nữ",
+        "Address": "987 đường Nguyễn Trãi, Quận 1, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Do Van G",
+        "Age": 23,
+        "Gender": "Nam",
+        "Address": "147 đường Lê Thánh Tôn, Quận 1, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Bui Thi H",
+        "Age": 20,
+        "Gender": "Nữ",
+        "Address": "258 đường Pasteur, Quận 3, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Ngo Van I",
+        "Age": 22,
+        "Gender": "Nam",
+        "Address": "369 đường Nam Kỳ Khởi Nghĩa, Quận 3, Thành phố Hồ Chí Minh"
+    },
+    {
+        "Name": "Duong Thi K",
+        "Age": 21,
+        "Gender": "Nữ",
+        "Address": "741 đường Cách Mạng Tháng 8, Quận 3, Thành phố Hồ Chí Minh"
+    }
+]
+</file>
+
+<file path="Interfaces/ISubCommand.cs">
+namespace TerminalRunner.Interfaces
+{
+    public interface ISubCommand
+    {
+        void Execute();
+    }
+}
+</file>
+
+<file path="Models/CommandConfig.cs">
+using TerminalRunner.Attributes;
+using System.Reflection;
+namespace TerminalRunner.Models
+{
+    public class CommandConfig
+    {
+        /// <summary> 
+        /// Tên của lệnh.
+        /// </summary>
+        public string Key { get; set; }
+
+        /// <summary>
+        /// Mô tả của lệnh.
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Các tên khác của lệnh.
+        /// </summary>
+        public string[] Aliases { get ; set; }
+
+        /// <summary>
+        /// Kiểu của lệnh con.
+        /// </summary>
+        public Type SubCommandType { get; set; }
+
+        /// <summary>
+        /// Các tham số của lệnh.
+        /// </summary>
+        public List<CommandArgumentConfig> Arguments { get; set; }
+
+        /// <summary>
+        /// Các tùy chọn của lệnh.
+        /// </summary>
+        public List<CommandOptionConfig> Options { get; set; }
+    }
+
+    public class CommandArgumentConfig
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool IsRequired { get; set; }
+        public int Order { get; set; }
+
+        public PropertyInfo PropertyInfo { get; set; }
+    }
+
+    public class CommandOptionConfig
+    {
+        public string[] Aliases { get; set; }
+        public string Description { get; set; }
+        public PropertyInfo PropertyInfo { get; set; }
+    }
+}
+</file>
+
+<file path="Models/Student.cs">
+using System.Text.Json.Serialization;
+
+namespace TerminalRunner.Models
+{
+    /// <summary>
+    /// Đại diện cho một sinh viên với thông tin cơ bản của họ.
+    /// </summary>
+    public class Student
+    {
+        /// <summary>
+        /// Lấy hoặc đặt họ tên đầy đủ của sinh viên.
+        /// </summary>
+        [JsonPropertyName("Name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Lấy hoặc đặt tuổi của sinh viên.
+        /// </summary>
+        [JsonPropertyName("Age")]
+        public int Age { get; set; }
+
+        /// <summary>
+        /// Lấy hoặc đặt địa chỉ của sinh viên.
+        /// </summary>
+        [JsonPropertyName("Address")]
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Lấy hoặc đặt giới tính của sinh viên.
+        /// </summary>
+        [JsonPropertyName("Gender")]
+        public string Gender { get; set; }
+
+        /// <summary>
+        /// Trả về chuỗi biểu diễn thông tin của sinh viên.
+        /// </summary>
+        public override string ToString()
+        {
+            return $"Name: {Name}, Age: {Age}, Address: {Address}";
+        }
+    }
+}
+</file>
+
+<file path="obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs">
+// <autogenerated />
+using System;
+using System.Reflection;
+[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v6.0", FrameworkDisplayName = ".NET 6.0")]
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.AssemblyInfo.cs">
+//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+using System;
+using System.Reflection;
+
+[assembly: System.Reflection.AssemblyCompanyAttribute("TerminalRunner")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyProductAttribute("TerminalRunner")]
+[assembly: System.Reflection.AssemblyTitleAttribute("TerminalRunner")]
+[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+
+// Generated by the MSBuild WriteCodeFragment class.
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.AssemblyInfoInputs.cache">
+a85b6d0310410721c927e6fc24cb7554011e4bd2d9c68923fcf004c808324d8a
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.csproj.CoreCompileInputs.cache">
+543a6c228367b24756338b8b1e0ef547338e5de8eaed9aacf37cc5a99c4a4c3e
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.csproj.FileListAbsolute.txt">
+C:\Users\Admin\Desktop\TerminalRunner\bin\Debug\net6.0\TerminalRunner.exe
+C:\Users\Admin\Desktop\TerminalRunner\bin\Debug\net6.0\TerminalRunner.deps.json
+C:\Users\Admin\Desktop\TerminalRunner\bin\Debug\net6.0\TerminalRunner.runtimeconfig.json
+C:\Users\Admin\Desktop\TerminalRunner\bin\Debug\net6.0\TerminalRunner.dll
+C:\Users\Admin\Desktop\TerminalRunner\bin\Debug\net6.0\TerminalRunner.pdb
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.AssemblyInfo.cs
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.dll
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\refint\TerminalRunner.dll
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.pdb
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.genruntimeconfig.cache
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\ref\TerminalRunner.dll
+C:\Users\Admin\Desktop\TerminalRunner\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\TerminalRunner.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\TerminalRunner\obj\Debug\net6.0\Terminal.B97F4408.Up2Date
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.GeneratedMSBuildEditorConfig.editorconfig">
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TerminalRunner
+build_property.ProjectDir = C:\Users\Admin\Desktop\TerminalRunner\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 6.0
+build_property.EnableCodeStyleSeverity =
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.genruntimeconfig.cache">
+69dfda2ba6229afe473ded83df38aa7f3b21ba6b060b56982f4a5b9aa0b79bac
+</file>
+
+<file path="obj/Debug/net6.0/TerminalRunner.GlobalUsings.g.cs">
+// <auto-generated/>
+global using global::System;
+global using global::System.Collections.Generic;
+global using global::System.IO;
+global using global::System.Linq;
+global using global::System.Net.Http;
+global using global::System.Threading;
+global using global::System.Threading.Tasks;
+</file>
+
+<file path="obj/memory-bank/activeContext.md">
+# Bối cảnh hoạt động
+
+## Trọng tâm hiện tại
+Trọng tâm chính là thiết lập cấu trúc nền tảng cho dự án TerminalRunner. Điều này bao gồm:
+1. Khởi tạo Memory Bank với tài liệu cốt lõi.
+2. Đảm bảo khả năng tương thích với runtime của .NET 6.0.
+3. Thiết lập các phụ thuộc và cấu hình cần thiết.
+
+## Thay đổi gần đây
+- Đã tạo `projectbrief.md` để phác thảo mục tiêu và yêu cầu của dự án.
+- Thêm `productContext.md` để định nghĩa mục đích, vấn đề cần giải quyết và mục tiêu trải nghiệm người dùng.
+- Tài liệu hóa kiến trúc hệ thống và các mẫu thiết kế trong `systemPatterns.md`.
+- Chỉ định công nghệ, thiết lập và ràng buộc trong `techContext.md`.
+
+## Bước tiếp theo
+1. Triển khai các thành phần cốt lõi của ứng dụng, bắt đầu với Command Executor.
+2. Phát triển cơ chế ghi nhật ký cho chi tiết thực thi và xử lý lỗi.
+3. Cấu hình ứng dụng để tích hợp liền mạch với runtime của .NET 6.0.
+4. Kiểm tra thiết lập ban đầu để đảm bảo tất cả các phụ thuộc hoạt động đúng cách.
+
+## Cân nhắc hiện tại
+- Duy trì tính mô-đun và khả năng mở rộng trong cơ sở mã.
+- Đảm bảo tài liệu rõ ràng và dễ bảo trì để nâng cấp trong tương lai.
+- Tập trung vào hiệu suất và độ tin cậy trong quá trình thực thi.
+</file>
+
+<file path="obj/memory-bank/productContext.md">
+# Bối cảnh sản phẩm
+
+## Mục đích
+TerminalRunner được thiết kế để đơn giản hóa việc thực thi các tác vụ hoặc lệnh trong môi trường .NET. Nó nhằm cung cấp một giải pháp đáng tin cậy và hiệu quả cho các nhà phát triển và người dùng cần tự động hóa hoặc quản lý việc thực thi lệnh.
+
+## Vấn đề cần giải quyết
+Việc thực thi các tác vụ hoặc lệnh thủ công có thể dễ xảy ra lỗi và tốn thời gian. TerminalRunner giải quyết vấn đề này bằng cách cung cấp một phương pháp tiếp cận có cấu trúc và tự động hóa, giảm thiểu khả năng xảy ra lỗi và cải thiện năng suất.
+
+## Mục tiêu trải nghiệm người dùng
+1. Giao diện trực quan và thân thiện để thực thi lệnh.
+2. Phản hồi rõ ràng và báo cáo lỗi để hướng dẫn người dùng.
+3. Tích hợp liền mạch với môi trường runtime của .NET 6.0.
+4. Hiệu suất cao và độ tin cậy trong quá trình thực thi.
+
+## Tính năng chính
+- Hỗ trợ thực thi nhiều loại lệnh khác nhau.
+- Ghi nhật ký chi tiết và xử lý lỗi.
+- Tương thích với các tiêu chuẩn hiện đại của .NET.
+- Khả năng mở rộng để nâng cấp trong tương lai.
+</file>
+
+<file path="obj/memory-bank/progress.md">
+# Tiến độ
+
+## Những gì đã hoàn thành
+- Memory Bank đã được khởi tạo thành công với các tệp cốt lõi sau:
+  - `projectbrief.md`
+  - `productContext.md`
+  - `systemPatterns.md`
+  - `techContext.md`
+  - `activeContext.md`
+- Tài liệu cung cấp nền tảng rõ ràng cho dự án TerminalRunner, bao gồm mục tiêu, kiến trúc và thiết lập kỹ thuật.
+
+## Những gì còn lại để xây dựng
+1. Các thành phần cốt lõi của ứng dụng:
+   - Command Executor
+   - Logger
+   - Configuration Manager
+   - User Interface
+2. Tích hợp với runtime của .NET 6.0.
+3. Kiểm tra và xác thực thiết lập ban đầu.
+
+## Trạng thái hiện tại
+Dự án đang ở giai đoạn ban đầu, với Memory Bank đã được thiết lập đầy đủ. Phát triển các thành phần cốt lõi là ưu tiên tiếp theo.
+
+## Vấn đề đã biết
+- Chưa xác định vấn đề nào ở giai đoạn này.
+</file>
+
+<file path="obj/memory-bank/projectbrief.md">
+# Tóm tắt dự án
+
+## Tên dự án
+TerminalRunner
+
+## Mục tiêu
+Mục tiêu của dự án này là phát triển một ứng dụng .NET có tên TerminalRunner. Ứng dụng này được thiết kế để thực thi các tác vụ hoặc lệnh một cách hiệu quả, tận dụng framework .NET 6.0.
+
+## Yêu cầu cốt lõi
+1. Xây dựng một ứng dụng mạnh mẽ và hiệu quả bằng C# và .NET 6.0.
+2. Đảm bảo khả năng tương thích với môi trường runtime của .NET 6.0.
+3. Cung cấp mã nguồn rõ ràng và dễ bảo trì để nâng cấp trong tương lai.
+4. Bao gồm các phụ thuộc và cấu hình cần thiết để thực thi liền mạch.
+
+## Kết quả cần đạt được
+- Một ứng dụng .NET hoạt động đầy đủ với tất cả các tính năng yêu cầu.
+- Cơ sở mã được cấu trúc và tài liệu hóa đúng cách.
+- Cấu hình build và runtime cho .NET 6.0.
+</file>
+
+<file path="obj/memory-bank/systemPatterns.md">
+# Mẫu hệ thống
+
+## Kiến trúc
+TerminalRunner tuân theo kiến trúc mô-đun để đảm bảo khả năng mở rộng và bảo trì. Ứng dụng được cấu trúc thành các thành phần riêng biệt, mỗi thành phần chịu trách nhiệm cho một chức năng cụ thể.
+
+## Các mẫu thiết kế chính
+1. **Mẫu Command**: Được sử dụng để đóng gói các lệnh dưới dạng đối tượng, cho phép linh hoạt và mở rộng tốt hơn.
+2. **Mẫu Singleton**: Đảm bảo chỉ có một phiên bản duy nhất của các thành phần quan trọng như trình quản lý cấu hình.
+3. **Mẫu Factory**: Đơn giản hóa việc tạo đối tượng, thúc đẩy tái sử dụng mã và trừu tượng hóa.
+
+## Mối quan hệ giữa các thành phần
+- **Command Executor**: Thành phần trung tâm chịu trách nhiệm thực thi các tác vụ hoặc lệnh.
+- **Logger**: Xử lý việc ghi nhật ký chi tiết thực thi và lỗi.
+- **Configuration Manager**: Quản lý cài đặt ứng dụng và cấu hình runtime.
+- **User Interface**: Cung cấp phản hồi và điểm tương tác cho người dùng.
+
+## Quyết định kỹ thuật
+- Sử dụng .NET 6.0 vì các cải tiến về hiệu suất và hỗ trợ dài hạn.
+- Phụ thuộc vào Newtonsoft.Json để xử lý JSON.
+- Tập trung vào khả năng mở rộng để phù hợp với các tính năng và tích hợp trong tương lai.
+</file>
+
+<file path="obj/memory-bank/techContext.md">
+# Bối cảnh kỹ thuật
+
+## Công nghệ sử dụng
+- **.NET 6.0**: Framework cốt lõi để xây dựng ứng dụng, được chọn vì hiệu suất và hỗ trợ dài hạn.
+- **C#**: Ngôn ngữ lập trình chính để phát triển.
+- **Newtonsoft.Json**: Thư viện để phân tích và tuần tự hóa JSON.
+
+## Thiết lập phát triển
+1. Cài đặt .NET 6.0 SDK.
+2. Sử dụng Visual Studio hoặc Visual Studio Code làm IDE.
+3. Đảm bảo Newtonsoft.Json được bao gồm như một phụ thuộc.
+
+## Ràng buộc kỹ thuật
+- Ứng dụng phải tương thích với runtime của .NET 6.0.
+- Duy trì hiệu suất cao và sử dụng bộ nhớ thấp trong quá trình thực thi.
+- Đảm bảo khả năng tương thích đa nền tảng trong hệ sinh thái .NET.
+
+## Phụ thuộc
+- **Newtonsoft.Json**: Xử lý các thao tác liên quan đến JSON.
+- **Thư viện .NET Core**: Cung cấp các chức năng runtime và phát triển cần thiết.
+</file>
+
+<file path="obj/project.assets.json">
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Newtonsoft.Json/13.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Newtonsoft.Json >= 13.0.3"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj",
+      "projectName": "TerminalRunner",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.200"
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.3, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          }
+        ],
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
+</file>
+
+<file path="obj/project.nuget.cache">
+{
+  "version": 2,
+  "dgSpecHash": "xpAyEEnw8Ow=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
+  "logs": []
+}
+</file>
+
+<file path="obj/TerminalRunner.csproj.nuget.dgspec.json">
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj",
+        "projectName": "TerminalRunner",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\TerminalRunner.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\TerminalRunner\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
+</file>
+
+<file path="obj/TerminalRunner.csproj.nuget.g.props">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Admin\.nuget\packages\</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.13.1</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\Admin\.nuget\packages\" />
+  </ItemGroup>
+</Project>
+</file>
+
+<file path="obj/TerminalRunner.csproj.nuget.g.targets">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+</file>
+
+<file path="Program.cs">
+using System.Text;
+using System.Diagnostics;
+using TerminalRunner.Models;
+
+namespace TerminalRunner
+{
+    class Program
+    {
+        
+        /// <summary>
+        /// Main entry point of the application.
+        /// <arg name="args">Command-line arguments passed to the application.</arg>
+        /// </summary>
+        public static void Main(string[] args)
+        {
+            StartPoint startPoint = new StartPoint();
+            startPoint.Initialize(args);
+        }
+
+        /// <summary>
+        /// Đọc nội dung của file JSON và hiển thị ra màn hình.
+        /// </summary>
+        static void ReadJson()
+        {
+            string jsonPath = "Data/student.json";
+            string jsonContent = File.ReadAllText(jsonPath);
+
+            Console.WriteLine("Content of the student.json file:");
+            var students = System.Text.Json.JsonSerializer.Deserialize<List<Student>>(jsonContent);
+            CommonFunction.PrintTableForList(students);
+        }
+
+
+        /// <summary>
+        /// Hiển thị danh sách các file và thư mục trong thư mục hiện tại.
+        /// </summary>
+        static void ListDirectory()
+        {
+            string currentDirectory = "C:\\Users\\Admin\\Desktop\\TerminalRunner\\obj\\memory-bank";
+            string[] files = Directory.GetFiles(currentDirectory);
+            string[] directories = Directory.GetDirectories(currentDirectory);
+
+            Console.WriteLine("Current directory: " + currentDirectory);
+            Console.WriteLine("Files:");
+            // directories.ToList().ForEach(directory => Console.WriteLine(directory));
+            files.ToList().ForEach(file => Console.WriteLine(file));
+        }
+    }
+}
+</file>
+
+<file path="Services/CommonFunction.cs">
+namespace TerminalRunner
+{
+    public static class CommonFunction
+    {
+        /// <summary>
+        /// In ra bảng dữ liệu từ danh sách các đối tượng.
+        /// </summary>
+        /// <typeparam name="T">Kiểu dữ liệu của đối tượng.</typeparam>
+        /// <param name="items">Danh sách các đối tượng.</param>
+        /// <param name="headers">Mảng chứa tên cột.</param>
+        
+        public static void PrintTableForList<T>(IEnumerable<T> items, string[] headers = null, Func<T, string[]> getRowValues = null)
+        {
+            // If headers are not provided, get all properties of type T
+            if (headers == null || headers.Length == 0)
+            {
+                headers = typeof(T).GetProperties()
+                                 .Select(p => p.Name)
+                                 .ToArray();
+                
+                // Update getRowValues to use reflection
+                getRowValues = (item) => typeof(T).GetProperties()
+                                                  .Select(p => p.GetValue(item)?.ToString() ?? "")
+                                                  .ToArray();       
+            }
+
+            if (!items.Any() || headers.Length == 0) return;
+
+            // Calculate column widths based on headers and data
+            var columnWidths = new int[headers.Length];
+            for (int i = 0; i < headers.Length; i++)
+            {
+                columnWidths[i] = headers[i].Length;
+                foreach (var item in items)
+                {
+                    var rowValues = getRowValues(item);
+                    if (rowValues[i] != null)
+                    {
+                        columnWidths[i] = Math.Max(columnWidths[i], rowValues[i].Length);
+                    }
+                }
+            }
+
+            // Print headers
+            Console.WriteLine();
+            for (int i = 0; i < headers.Length; i++)
+            {
+                Console.Write("| " + headers[i].PadRight(columnWidths[i]) + " ");
+            }
+            Console.WriteLine("|");
+
+            // Print separator line
+            Console.Write("+");
+            for (int i = 0; i < headers.Length; i++)
+            {
+                Console.Write(new string('-', columnWidths[i] + 2) + "+");
+            }
+            Console.WriteLine();
+
+            // Print data rows
+            foreach (var item in items)
+            {
+                var rowValues = getRowValues(item);
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    Console.Write("| " + rowValues[i].PadRight(columnWidths[i]) + " ");
+                }
+                Console.WriteLine("|");
+            }
+            Console.WriteLine();
+        }   
+    }
+}
+</file>
+
+<file path="StartPoint.cs">
+using System.Diagnostics;
+using System.Text;
+using TerminalRunner.Attributes;
+using TerminalRunner.Interfaces;
+using TerminalRunner.Models;
+
+namespace TerminalRunner
+{
+    public class StartPoint
+    {
+        #region Properties
+        /// <summary>
+        /// Lịch sử các lệnh đã nhập.
+        /// </summary>
+        private static List<string> commandHistory = new List<string>();
+
+        /// <summary>
+        /// Chỉ số hiện tại trong lịch sử lệnh.
+        /// </summary>
+        private static int historyIndex = -1;
+
+        /// <summary>
+        /// Mô tả các lệnh hệ thống.
+        /// </summary>
+        private static List<CommandConfig> commandDescription = new List<CommandConfig>
+        {
+            new CommandConfig { Key = "exit", Description = "Thoát khỏi chương trình." },
+            new CommandConfig { Key = "clear", Description = "Xóa màn hình." },
+            new CommandConfig { Key = "help", Description = "Hiển thị hướng dẫn sử dụng." },
+        };
+        #endregion
+
+        /// <summary>
+        /// Khởi tạo chương trình.
+        /// </summary>
+        /// <param name="args">Các đối số dòng lệnh.</param>
+        public void Initialize(string[] args)
+        {
+            // Set up the PATH environment variable
+            SetupPathEnvironment();
+
+            // Load sub commands
+            LoadSubCommands();
+            
+            if (args.Length > 0)
+            {
+                // Combine arguments into a single command
+                string command = string.Join(" ", args);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"> {command}");
+                Console.ResetColor();
+                ExecuteCommand(command);
+                return;
+            }
+
+            // Display welcome message
+            DisplayWelcomeMessage();
+
+            bool keepRunning = true;
+
+            while (keepRunning)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("> ");
+                Console.ResetColor();
+
+                // Read command with history    
+                string command = ReadCommandWithHistory();
+
+                if (string.IsNullOrWhiteSpace(command))
+                    continue;
+
+                // Add to history if not empty and not duplicate of last command
+                if (commandHistory.Count == 0 || command != commandHistory[commandHistory.Count - 1])
+                {
+                    commandHistory.Add(command);
+                }
+                historyIndex = commandHistory.Count;
+
+                // lấy lệnh gốc
+                var rootCommand = command.Split(' ');
+
+                // Handle command abbreviations
+                (command, var commandConfig) = HandleCommandAbbreviations(command);
+
+                // Handle built-in commands
+                switch (command.ToLower())
+                {
+                    case "exit":
+                    case "quit":
+                        keepRunning = false;
+                        continue;
+                    case "clear":
+                        Console.Clear();
+                        continue;
+                    case "help":
+                        ShowHelp();
+                        continue;
+                    default:
+                        if (commandConfig != null)
+                        {
+                            ExecuteCommandValue(commandConfig, rootCommand);
+                            continue;
+                        }
+                        break;
+                }
+
+
+                ExecuteCommand(command);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Exiting Terminal Runner. Goodbye!");
+            Console.ResetColor();
+        }
+
+        private static void ExecuteCommandValue(CommandConfig commandConfig, string[] rootCommand){
+            var subCommand = Activator.CreateInstance(commandConfig.SubCommandType) as ISubCommand;
+
+            int sortOrder = 0, sortArg = 1;
+            bool isOption = false;
+            var optionName = string.Empty;
+
+            foreach (var item in rootCommand){
+                if (sortOrder == 0){
+                    sortOrder++;
+                    continue;
+                }
+
+                if(item.StartsWith("-")){
+                    isOption = true;
+                    optionName = item;
+                    continue;
+                }
+
+                if(isOption){
+                    var option = commandConfig.Options.FirstOrDefault(opt => opt.Aliases.Contains(optionName));
+                    if (option != null){
+                        option.PropertyInfo.SetValue(subCommand, item);
+                    }
+                    isOption = false;
+                    continue;
+                } else {
+                    commandConfig.Arguments.FirstOrDefault(arg => arg.Order == sortArg)?.PropertyInfo.SetValue(subCommand, item);
+                    sortArg++;
+                }
+
+                sortOrder++;
+            }
+
+            subCommand.Execute();
+        }
+    
+        /// <summary>
+        /// Tải các lệnh con từ các lớp được đánh dấu với CommandAttribute.
+        /// </summary>
+        private static void LoadSubCommands()
+        {
+            var subCommands = System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
+                .Where(type => type.IsClass && !type.IsAbstract && type.GetInterfaces().Contains(typeof(TerminalRunner.Interfaces.ISubCommand)))
+                .ToList();
+
+            foreach (var subCommand in subCommands)
+            {
+                var commandAttribute = subCommand.GetCustomAttributes(typeof(CommandAttribute), true).FirstOrDefault() as CommandAttribute;
+                if (commandAttribute != null)
+                {
+                    // check trùng  lệnh và alias
+                    if (commandDescription.Any(cmd => cmd.Key == commandAttribute.Key 
+                        || (cmd.Aliases != null && cmd.Aliases.Any(alias => alias == commandAttribute.Key))
+                        || (commandAttribute.Aliases != null && commandAttribute.Aliases.Any(alias => alias == cmd.Key))))
+                    {
+                        throw new Exception($"Command '{commandAttribute.Key}' already exists.");
+                    }
+
+                    var props = subCommand.GetProperties()
+                        .Where(prop => prop.GetCustomAttributes(typeof(CommandArgumentAttribute), true).Any()).ToList();
+
+                    var arguments = new List<CommandArgumentConfig>();
+
+                    for(var i = 0; i < props.Count; i++){
+                        var prop = props[i];
+                        var attribute = prop.GetCustomAttributes(typeof(CommandArgumentAttribute), true).FirstOrDefault() as CommandArgumentAttribute;
+
+                        arguments.Add(new CommandArgumentConfig {
+                            Name = prop.Name,
+                            Description = attribute?.Description,
+                            IsRequired = attribute?.IsRequired ?? false,
+                            Order = attribute?.Order ?? i,
+                            PropertyInfo = prop
+                        });
+                    }
+
+                    // Sort arguments by Order
+                    arguments = arguments.OrderBy(arg => arg.Order).ToList();
+
+                    // Reassign Order starting from 1
+                    for (int i = 0; i < arguments.Count; i++)
+                    {
+                        arguments[i].Order = i + 1;
+                    }
+
+                    var options = subCommand.GetProperties()
+                        .Where(prop => prop.GetCustomAttributes(typeof(CommandOptionAttribute), true).Any()).
+                        Select(prop => {
+                            var attribute = prop.GetCustomAttributes(typeof(CommandOptionAttribute), true).FirstOrDefault() as CommandOptionAttribute;
+                            return new CommandOptionConfig {
+                                Aliases = attribute?.Aliases?.Select(alias => "-" + alias.ToLower()).ToArray(),
+                                Description = attribute?.Description,
+                                PropertyInfo = prop
+                            };
+                        }).ToList();
+
+
+                    commandDescription.Add(new CommandConfig { 
+                        Key = commandAttribute.Key, 
+                        Description = commandAttribute.Description, 
+                        Aliases = commandAttribute.Aliases,
+                        SubCommandType = subCommand,
+                        Arguments = arguments,
+                        Options = options
+                        });
+                }
+            }
+        }
+
+        #region Private Methods
+        /// <summary>
+        /// Kiểm tra và thêm đường dẫn ứng dụng vào biến môi trường PATH.
+        /// </summary>
+        private static void SetupPathEnvironment()
+        {
+            string appPath = AppDomain.CurrentDomain.BaseDirectory;
+            string pathVar = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.Machine);
+            
+            if (!pathVar.Contains(appPath))
+            {
+                try
+                {
+                    string newPath = pathVar + ";" + appPath;
+                    Environment.SetEnvironmentVariable("Path", newPath, EnvironmentVariableTarget.Machine);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Added TerminalRunner to system PATH. You can now run it from anywhere.");
+                    Console.ResetColor();
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Failed to add to PATH: {ex.Message}");
+                    Console.ResetColor();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Thực thi lệnh hệ thống.
+        /// </summary>
+        /// <param name="command">Lệnh cần thực thi.</param>
+        private static void ExecuteCommand(string command)
+        {
+            try
+            {
+                // Create process info
+                ProcessStartInfo processInfo = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/c {command}",
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                // Create and start the process
+                using (Process process = new Process())
+                {
+                    process.StartInfo = processInfo;
+
+                    // Set up output handling
+                    process.OutputDataReceived += (sender, e) =>
+                    {
+                        if (!string.IsNullOrEmpty(e.Data))
+                        {
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine(e.Data);
+                            Console.ResetColor();
+                        }
+                    };
+
+                    // Set up error handling
+                    process.ErrorDataReceived += (sender, e) =>
+                    {
+                        if (!string.IsNullOrEmpty(e.Data))
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"ERROR: {e.Data}");
+                            Console.ResetColor();
+                        }
+                    };
+
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine($"Executing: {command}");
+                    Console.ResetColor();
+
+                    process.Start();
+
+                    // Begin asynchronous reading of output
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
+
+                    // Handle interactive commands by forwarding console input to the process
+                    Task.Run(() =>
+                    {
+                        try
+                        {
+                            while (!process.HasExited)
+                            {
+                                if (Console.KeyAvailable)
+                                {
+                                    var key = Console.ReadKey(true);
+                                    process.StandardInput.Write(key.KeyChar);
+
+                                    // If Enter key, add a newline
+                                    if (key.Key == ConsoleKey.Enter)
+                                    {
+                                        process.StandardInput.WriteLine();
+                                    }
+                                }
+                                Thread.Sleep(10);
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            // Ignore exceptions during input forwarding
+                        }
+                    });
+
+                    // Wait for the process to exit
+                    process.WaitForExit();
+
+                    if (process.ExitCode != 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"Command exited with code: {process.ExitCode}");
+                        Console.ResetColor();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error executing command: {ex.Message}");
+                Console.ResetColor();
+            }
+        }
+        
+        /// <summary>
+        /// Hiển thị thông tin chào mừng và hướng dẫn sử dụng khi khởi động.
+        /// </summary>
+        private static void DisplayWelcomeMessage()
+        {
+            Console.Title = "Terminal Runner";
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Terminal Runner - Type commands to execute");
+            Console.WriteLine("--------------------------------------------------------");
+            foreach (var command in commandDescription)
+            {
+                var argComment = string.Empty;
+                var optionComment = string.Empty;
+
+                // Thêm danh sách Argument vào mô tả lệnh
+                if (command.Arguments != null && command.Arguments.Count > 0){
+                    argComment = string.Join(" ", command.Arguments.Select(arg => arg.IsRequired ? $"<{arg.Name}>" : $"[{arg.Name}]"));
+                }
+
+                // Thêm danh sách Option vào mô tả lệnh
+                if (command.Options != null && command.Options.Count > 0){
+                    optionComment = string.Join(" ", command.Options.Select(opt => $"[{string.Join(", ", opt.Aliases)}]"));
+                }
+                
+                if (command.Aliases != null && command.Aliases.Length > 0){
+                    string aliases = string.Join(" | ", command.Aliases);
+                    Console.WriteLine($"Type '<{command.Key} | {aliases}> {argComment} {optionComment}' to {command.Description}");
+                }
+
+                else{
+                    Console.WriteLine($"Type '<{command.Key}> {argComment} {optionComment}' to {command.Description}");
+                }
+            }
+            Console.WriteLine("Use up/down arrow keys to navigate command history");
+            Console.WriteLine("--------------------------------------------------------");
+            Console.ResetColor();
+        }
+
+        /// <summary>
+        /// Đọc lệnh từ người dùng với hỗ trợ lịch sử.
+        /// </summary>
+        /// <returns>Chuỗi lệnh được nhập từ người dùng.</returns>
+        private static string ReadCommandWithHistory()
+        {
+            StringBuilder input = new StringBuilder();
+            int cursorIndex = 0;
+
+            ConsoleKeyInfo keyInfo;
+            do
+            {
+                keyInfo = Console.ReadKey(true);
+
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    Console.WriteLine();
+                    break;
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace && cursorIndex > 0)
+                {
+                    input.Remove(cursorIndex - 1, 1);
+                    cursorIndex--;
+
+                    // Redraw the line
+                    Console.CursorLeft = 2; // Position after the prompt
+                    Console.Write(new string(' ', input.Length + 1));
+                    Console.CursorLeft = 2;
+                    Console.Write(input.ToString());
+                    Console.CursorLeft = 2 + cursorIndex;
+                }
+                else if (keyInfo.Key == ConsoleKey.UpArrow)
+                {
+                    if (commandHistory.Count > 0)
+                    {
+                        historyIndex = Math.Max(0, historyIndex - 1);
+                        string historyCommand = commandHistory[historyIndex];
+
+                        // Clear current input
+                        Console.CursorLeft = 2;
+                        Console.Write(new string(' ', input.Length));
+                        Console.CursorLeft = 2;
+
+                        // Set new input
+                        input.Clear();
+                        input.Append(historyCommand);
+                        cursorIndex = input.Length;
+
+                        Console.Write(input.ToString());
+                    }
+                }
+                else if (keyInfo.Key == ConsoleKey.DownArrow)
+                {
+                    if (historyIndex < commandHistory.Count - 1)
+                    {
+                        historyIndex++;
+                        string historyCommand = commandHistory[historyIndex];
+
+                        // Clear current input
+                        Console.CursorLeft = 2;
+                        Console.Write(new string(' ', input.Length));
+                        Console.CursorLeft = 2;
+
+                        // Set new input
+                        input.Clear();
+                        input.Append(historyCommand);
+                        cursorIndex = input.Length;
+
+                        Console.Write(input.ToString());
+                    }
+                    else if (historyIndex == commandHistory.Count - 1)
+                    {
+                        // At the end of history, clear the input
+                        historyIndex = commandHistory.Count;
+
+                        // Clear current input
+                        Console.CursorLeft = 2;
+                        Console.Write(new string(' ', input.Length));
+                        Console.CursorLeft = 2;
+
+                        input.Clear();
+                        cursorIndex = 0;
+                    }
+                }
+                else if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    input.Insert(cursorIndex, keyInfo.KeyChar);
+                    cursorIndex++;
+
+                    // Redraw the line
+                    Console.CursorLeft = 2; // Position after the prompt
+                    Console.Write(input.ToString());
+                    Console.CursorLeft = 2 + cursorIndex;
+                }
+            } while (true);
+
+            return input.ToString();
+        }
+
+        /// <summary>
+        /// Xử lý viết tắt lệnh.
+        /// </summary>
+        /// <param name="command">Lệnh được nhập từ người dùng.</param>
+        /// <returns>Lệnh đã được viết tắt.</returns>
+        private static (string, CommandConfig) HandleCommandAbbreviations(string command)
+        {
+            // Check for command abbreviations
+            string commandLower = command.ToLower().Split(' ')[0];
+
+            // Check for multiple matching commands
+            var matchingCommands = commandDescription
+                .Where(cmd => cmd.Key.StartsWith(commandLower) || (cmd.Aliases != null && cmd.Aliases.Any() && cmd.Aliases.Any(alias => alias.ToLower().Equals(commandLower))))
+                .ToList();
+
+            if (matchingCommands.Count > 1)
+            {
+                Console.WriteLine($"Multiple matching commands found:");
+                foreach (var cmd in matchingCommands)
+                {
+                    Console.WriteLine($"- {cmd.Key} - {cmd.Description}");
+                }
+                return (command, null);
+            }
+
+            return (matchingCommands.FirstOrDefault()?.Key ?? command, matchingCommands.FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Hiển thị hướng dẫn sử dụng.
+        /// </summary>
+        private static void ShowHelp()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Available commands:");
+            foreach (var command in commandDescription)
+            {
+                var argComment = string.Empty;
+                var optionComment = string.Empty;
+
+                if (command.Arguments != null && command.Arguments.Count > 0){
+                    argComment = string.Join(" ", command.Arguments.Select(arg => arg.IsRequired ? $"<{arg.Name}>" : $"[{arg.Name}]"));
+                }   
+
+                if (command.Options != null && command.Options.Count > 0){
+                    optionComment = string.Join(" ", command.Options.Select(opt => $"[{string.Join(", ", opt.Aliases)}]"));
+                }
+                
+                if (command.Aliases != null && command.Aliases.Length > 0){
+                    string aliases = string.Join(" | ", command.Aliases);
+                    Console.WriteLine($"  <{command.Key} | {aliases}> {argComment} {optionComment} - {command.Description}");
+                }
+                else{
+                    Console.WriteLine($"  {command.Key} {argComment} {optionComment} - {command.Description}");
+                }
+            }
+
+            Console.WriteLine("  <command>  - Execute any system command");
+            Console.WriteLine("You can also run commands directly by passing them as arguments:");
+            Console.WriteLine("  Example: terminalrunner dir /w");
+            Console.ResetColor();
+        }
+        #endregion
+    }
+}
+</file>
+
+<file path="SubCommands/ReadJson.cs">
+using TerminalRunner.Attributes;
+using TerminalRunner.Interfaces;
+using TerminalRunner.Models;
+
+namespace TerminalRunner.SubCommands
+{
+    [Command(Key = "readjson", Description = "Đọc nội dung của file JSON và hiển thị ra màn hình.", Aliases = new string[] { "rj" })]
+    public class ReadJson : ISubCommand
+    {
+        /// <summary>
+        /// Tên của file JSON.
+        /// </summary>
+        [CommandArgument(IsRequired = true, Description = "Tên của file JSON.", Order = 1)]
+        public string FileName { get; set; }
+
+        [CommandArgument(IsRequired = false, Description = "Định dạng file.", Order = 2)]
+        public string Format { get; set; }
+
+        [CommandOption(Aliases = new string[] { "o", "out" }, Description = "Chọn chế độ ghi dữ liệu.")]
+        public string OutMode { get; set; }
+
+        public void Execute()
+        {
+            Format = Format ?? "json";
+            string jsonPath = $"Data/{FileName}.{Format}";
+            if (!File.Exists(jsonPath))
+            {
+                Console.WriteLine($"File {jsonPath} not found.");
+                return;
+            }
+
+            string jsonContent = File.ReadAllText(jsonPath);
+
+            Console.WriteLine("Content of the student.json file:");
+            var jsonObjs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Student>>(jsonContent);
+            switch(OutMode){
+                case "json":
+                    Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(jsonObjs, Newtonsoft.Json.Formatting.Indented));
+                    break;
+                case "min":
+                    Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(jsonObjs));
+                    break;
+                case "table":
+                default:
+                    CommonFunction.PrintTableForList(jsonObjs);
+                    break;
+            }
+        }
+    }
+}
+</file>
+
+<file path="TerminalRunner.csproj">
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
+</file>
+
+<file path="TerminalRunner.sln">
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalRunner", "TerminalRunner.csproj", "{E351AD17-B255-22AD-5FBD-5C248786A452}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E351AD17-B255-22AD-5FBD-5C248786A452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E351AD17-B255-22AD-5FBD-5C248786A452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E351AD17-B255-22AD-5FBD-5C248786A452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E351AD17-B255-22AD-5FBD-5C248786A452}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13B5601D-9F12-4A2D-91B2-86838A2B0956}
+	EndGlobalSection
+EndGlobal
+</file>
+
+</files>
